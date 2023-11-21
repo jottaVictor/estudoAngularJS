@@ -1,0 +1,356 @@
+body{
+    padding: 0px;
+    margin: 0px;
+    background-color: #252525;
+}
+#paginacao{
+    cursor: pointer;
+    display: flex;
+    justify-content: space-around;
+}
+#nav{
+    height: 230px;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+}
+#titulo{
+    top: 100px;
+    width: 100%;
+    position: absolute;
+    text-align: center;
+    color: #059400;
+    font-family: Courier New;
+    font-weight: bold;
+    font-size: 25px;
+}
+.container{
+    display: flex;
+}
+#formPrincipal{
+    margin: auto;
+    padding: 20px;
+    width: 500px;
+    height: 300px;
+    border-radius: 15px;
+    border: 2.5px solid #85ffb8;
+    box-shadow: 1px 1px 10px 0 #00DA00, 0 0 40px #00DA00, 0 0 70px #00DA00;
+}
+#ResultadoBusca{
+    width: 100%;
+    height: 100%;
+}
+#imgPersonagens{
+    display: flex;   
+}
+#home2{
+    position: absolute;
+    margin-left: 10px;
+    margin-top: 0px;
+}
+#imgPersonagens:hover{
+    border-radius: 10px;
+    border-color: #ffffffd2;
+    box-shadow: 0 0 5px #00DA00, 0 0 10px #00DA00;
+}
+img{
+    border-radius: 10px;
+}
+.row{
+    display: inline;
+    width: 100%;
+}
+.rowFlex{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+.rowFlexDois{
+    display: flex;
+    justify-content: center;
+}
+.twobox{
+    width: 49%;
+}
+input{
+    text-align: center;
+}
+.input{
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+}
+.label{
+    color: #FFF;
+}
+select{
+    font-size: 15px;
+    padding: 10px;
+    width: 100%;
+    background-color: #059400;
+    border: none;
+    border-radius: 10px;
+    color: #FFF;
+}
+select:hover{
+    box-shadow: 0 0 5px #00DA00, 0 0 10px #00DA00;
+}
+span{
+    color: #ffffff;
+}
+p{
+    color: #FFF;
+}
+footer{
+    margin-top: 50px;
+}
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+.material-symbols-outlined{
+    color: #FFF;
+}
+#inputName{
+    margin-top: 5px;
+    height: 25px;
+    width: 100%;
+    color: #FFF;
+    background-color: #00da0000;
+    border-radius: 15px;
+    border-color: #ffffffd2;
+}
+
+#tituloForm{
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    color: #FFF;
+    margin-bottom: 40px;
+}
+#tituloForm p{
+    font-size: 18px;
+}
+#formPrincipal .input{
+    margin-bottom: 30px;
+}
+#filtros{
+    margin-bottom: 30px;
+}
+.button{
+    color: #FFF;
+    padding: 10px;
+    background-color: #00DA00;
+    border: none;
+    border-radius: 8px;
+}
+#buttonConhecer,#buttonBuscar{
+    font-size: 15px;
+    width: 49%;
+}
+.button:hover{
+    box-shadow: 0 0 5px #00DA00, 0 0 20px #00DA00, 0 0 10px #00DA00;
+}
+.button:disabled{
+    background-color: #2c532c;
+}
+#topoPesquisa{
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+#tituloPesq{
+    height: 100%;
+    width: 100%;
+    text-align: center;
+}
+#home{
+    margin-left: 20px;
+    position: absolute;
+    text-align: left;
+}
+#tituloPesq p{
+    font-size: 20px;
+}
+#corpoDaPesquisa{
+    max-width: 2090px;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1em;
+    margin: 0 auto;
+    justify-content: center;
+}
+.cube{
+    width: 400px;
+    display: flex;
+    padding: 10px;
+    margin: 5px;
+    box-sizing: border-box;
+    border: 2px solid;
+    border-color: #009c00;
+    border-radius: 10px;
+}
+.cube:hover{
+    border-color: #ffffffd2;
+    box-shadow: 0 0 5px #00DA00, 0 0 10px #00DA00;
+}
+#someData{
+    padding: 10px;
+}
+.rowFlexDois button{
+    margin-left: 2.5px;
+}
+.rowFlexDois input{
+    color: #FFF;
+    background-color: #ffffff00;
+    margin-right: 2.5px;
+    width: 50px;
+    height: 30px;
+    border-radius: 15px;
+    border: 2.5px solid #85ffb8;
+}
+input:hover{
+    box-shadow: 1px 1px 5px 0 #00DA00, 0 0 20px #00DA00, 0 0 35px #00DA00;
+}
+#fundoLoad{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: #5a5a5a1f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#carregamento{
+    width: 20px;
+    height: 20px;
+    border: 5px solid #00DA00;
+    border-top-color: #009c00;
+    border-radius: 50%;
+    animation: rodar 1s infinite;
+}
+@keyframes rodar{
+    to{
+        transform: rotate(1turn);
+    }
+}
+#DadosEspecificosDePersonagens{
+    display: flex;
+    flex-wrap: wrap;
+}
+#Dados{
+    padding: 1em;
+    background-color: #009c00;
+    display: grid;
+    margin: 0 auto 0 auto;
+    grid-template-columns: 500px 1000px;
+    grid-template-rows: 400px 180px 100px;
+    grid-template-areas: "img ep"
+                         "dado ep"
+                         "ro ro";
+    border-radius: 10px;
+    justify-content: center;
+}
+#imgPersonagem{
+    display: flex;
+    grid-area: img;
+}
+#imgPersonagem img{
+    margin: auto auto auto auto;
+}
+#dadosPersonagem{
+    grid-area: dado;
+    text-align: left;
+    padding-left: 100px;
+    width: 100%;
+    height: 100%;
+}
+#episode{
+    text-align: center;
+    grid-area: ep;
+    overflow:auto; 
+}
+#dadosPersonagem span{
+    font-size: 20px;
+}
+#DadosDeEpisodios{
+    color: #FFF;
+}
+table{
+    margin: 0 auto 0 auto;
+}
+#rowBaixa{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-area: ro;
+}
+@media (max-width: 1580px){
+    #Dados{
+        grid-template-columns: 550px 550px;
+        grid-template-rows: 400px 180px 100px;
+        grid-template-areas: "img dado"
+                             "ep ep"
+                             "ro ro";
+    }
+    #dadosPersonagem{
+        display: flex;
+        align-items: center;
+        margin: auto auto auto auto;
+        padding-left: 0px;
+    }
+}
+@media (max-width: 1130px){
+    #Dados{
+        grid-template-columns: 80%;
+        grid-template-rows: auto;
+        grid-template-areas: "img"
+                             "dado"
+                             "ep"
+                             "ro";
+        grid-row-gap: 40px;
+    }
+    #dadosPersonagem{
+        text-align: center;
+        justify-content: center;
+    }
+    #imgPersonagem img{
+        margin-top: 30px;
+    }
+}
+@media (max-width: 835px){
+    #Dados{
+        grid-template-columns: 80%;
+        grid-template-rows: auto;
+        grid-template-areas: "img"
+                             "dado"
+                             "ep"
+                             "ro";
+        grid-row-gap: 40px;
+    }
+    #dadosPersonagem{
+        text-align: center;
+        justify-content: center;
+    }
+}
+@media (max-width: 600px){
+    #formPrincipal{
+        width: 80%;
+    }
+    #buttonConhecer,#buttonBuscar{
+        font-size: 12px;
+        width: 49%;
+    }
+    #tituloPesq p{
+        font-size: 12px;
+    }
+    .material-symbols-outlined {
+        font-variation-settings:
+        'FILL' 0,
+        'wght' 200,
+        'GRAD' 0,
+        'opsz' 24
+    }
+}

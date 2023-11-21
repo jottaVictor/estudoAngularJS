@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<!--
+    Manual dos valores para requisição
+    Requisição = 0 - Significa que nada foi feito, a aplicação não foi usada ou foi resetada;
+    Requisição = 1 - Foi pesquisado um personagem usando nome e (ou) filtros;
+    Requisição = 2 - Foi pesquisado um personagem aleatório ou está sendo exibido dados especificos de algum personagem;
+    Requisição = 404 - Foi retornado um de pesquisa
+
+    Para erros:
+    erroBusca - erro que da quando a busca foi feita errada
+    erroPagina - erro que da quando não há página procurada 
+
+    Dúvida:
+
+    Lista de coisas a fazer agora:
+    - ajuste de paginas
+    - pop ups de erros
+
+    Lista de funções feitas:
+    Buscar personagens por nome, genero e status;
+    Passar e voltar páginas;
+    Reiniciar a aplicação;
+    Sortear personagens;
+    Acessar dados de personagens clicando na imagem;
+    Acessar páginas clicando na paginação;
+    Acessar páginas atráves de input;
+    Ver episódios em que o personagem aparece;
+    *Acessar os personagens que moram na mesma origem que o personagem
+
+-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SabeTudo Rick and Morty</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="scirptApp.js?1405504548784475579"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styleApp.css?454442425454431">
+</head>
+
+<body ng-controller="cApp">
+    <div id="fundoLoad" ng-show="carregando == true">
+        <div id="carregamento"></div>
+    </div>
+    <div id="nav">
+        <div class="imgPortal">
+            <img src="img/portal.png" height="200px" width="200px">
+        </div>
+        <div id="titulo">
+            Personagens Rick and Morty
+        </div>
+    </div>
+    <br><br>
+    <div class="container" ng-show="Srequisicao==0">
+        <form id="formPrincipal">
+            <div class="row">
+                <div id="tituloForm">
+                    <p>PREENCHA PARA FAZER UMA BUSCA DE PERSONAGENS</p>
+                </div>
+            </div>
+            <div class="row">
+                <label class="label">Nome</label>
+                <div class="input">
+                    <input id="inputName" ng-model="inputName" type="text" placeholder="Ex.: Morty Smith">
+                </div>
+            </div>
+            <div id="filtros" class="rowFlex">
+                <div class="twobox">
+                    <div class="select">
+                        <select ng-model="status" ng-options="sts.tStatus for sts in opcaoStatus">
+                        </select>
+                    </div>
+                </div>
+                <div class="twobox">
+                    <div class="select">
+                      <select ng-model="gender" ng-options="gnd.tGender for gnd in opcaoGender">
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="rowFlex">
+                <button class="button" id="buttonBuscar" ng-click="Buscar()">Realizar Busca</button>
+                <button class="button" id="buttonConhecer" ng-click="Sorteia()">Conhecer personagem</button>
+            </div>
+        </form>
+    </div>
+    <section id="Pesquisa" ng-show="Srequisicao==1">
+        <div id="corpoDaPesquisa">
+            <div id="topoPesquisa">
+                <div id="home">
+                    <span class="material-symbols-outlined" ng-click="Reiniciar()">
+                        home
+                    </span>
+                </div>
+                <div id="tituloPesq">
+                    <p>Foi encontrado {{dataPersonagens.info.count}} resultados para sua busca</p>
+                </div>
+            </div>
+            <div class="cube" ng-repeat="character in dataPersonagens.results">
+                <div id="imgPersonagens"> 
+                    <img src={{character.image}} ng-click=carregarDados(character.id) height="150px" width="150px">
+                </div>
+                <div id="someData">
+                    <span>Nome: {{character.name}}</span> <br>
+                    <span>Genero: {{character.gender}}</span> <br>
+                    <span>Status: {{character.status}}</span>
+                </div>
+            </div>
+        </div>
+        <div id="paginacao">
+            <button class="button" ng-click=VoltaPagina() ng-disabled=!dataPersonagens.info.prev>Página anterior</button>
+            <div ng-repeat="pages in ExibirPages">
+                <div>
+                    <span ng-click=setPage(pages)>
+                        {{pages}}
+                    </span> 
+                </div>
+            </div>
+            <button class="button" ng-click=ProximaPagina() ng-disabled=!dataPersonagens.info.next>Proxima página</button>
+        </div>
+        <div class="rowFlexDois">
+            <input placeholder={{aPage}} ng-model=inputPage></input>
+            <button class="button" ng-click=setPage(inputPage)>Buscar</button>
+        </div>
+    </section>
+    <section id="DadosEspecificosDePersonagens" ng-show="Srequisicao==2">
+        <div id="Dados">
+            <div id="imgPersonagem">
+                <div id="home2">
+                    <span class="material-symbols-outlined" ng-click="Reiniciar()">
+                        home
+                    </span>
+                </div>
+                <img src="{{dataPersonagem.image}}" height="300px" width="300px">
+            </div>
+            <div id="dadosPersonagem">
+                <div>
+                    <span>Nome: {{dataPersonagem.name}}</span> <br>
+                    <span>Genero: {{dataPersonagem.gender}}</span> <br>
+                    <span>Status: {{dataPersonagem.status}}</span> <br>
+                    <span>Especie: {{dataPersonagem.species}}</span> <br>
+                    <span>Tipo: {{dataPersonagem.type}}</span> <br>
+                    <span>Origem: {{dataPersonagem.origin.name}}</span> <br>
+                    <span ng-show="dataPersonagem.origin.name!='unknown'">Dimensão da Origem: {{dataLocalOrigin.dimension}} <br></span>
+                    <span>Atual localização: {{dataPersonagem.location.name}}</span>
+                </div>
+            </div>
+            <div id="episode">
+                <p>Episódios em que {{dataPersonagem.name}} aparece:</p>
+                <div id="DadosDeEpisodios">
+                    <table>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Episódio</th>
+                            <th>Data de lançamento</th>
+                        </tr>
+                        <tr ng-repeat="dadoEp in dataEps">
+                            <td>{{dadoEp.name}}</td>
+                            <td>{{dadoEp.episode}}</td>
+                            <td>{{dadoEp.air_date}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="row" id="rowBaixa">
+                <button class="button" ng-show="dataPersonagens.info && Srequisicao==2" ng-click="voltarParaBusca()">Voltar para lista</button>
+                <button class="button" ng-show="!dataPersonagens.info" ng-click="Sorteia()">Conhecer outro personagem</button>
+            </div>
+        </div>
+    </section>
+        <div ng-show="Srequisicao==404">
+            <h1>Algo deu errado, mas não é sua culpa. <br>Provavelmente o personagem procurado não existe</h1>
+        </div>
+    <footer>
+    </footer>
+</body>
+
+</html>
